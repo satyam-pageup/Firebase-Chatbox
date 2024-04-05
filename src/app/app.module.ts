@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { initializeApp } from 'firebase/app';
 import { environment } from '../environment/environment';
+import { ChatListComponent } from './component/chat/chat-list/chat-list.component';
+import { ChatBoxComponent } from './component/chat/chat-box/chat-box.component';
 
 initializeApp(environment.firebase);
 @NgModule({
@@ -17,7 +19,9 @@ initializeApp(environment.firebase);
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ChatComponent
+    ChatComponent,
+    ChatListComponent,
+    ChatBoxComponent
   ],
   imports: [
     BrowserModule,
