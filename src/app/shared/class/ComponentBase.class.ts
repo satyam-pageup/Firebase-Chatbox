@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
 
 export class ComponentBase{
 
-    public getChatByIdE: EventEmitter<number> = new EventEmitter<number>(); 
+    // public getChatByIdE: EventEmitter<number> = new EventEmitter<number>(); 
 
     public baseUrl: string = environment.baseUrl;
     public isBtnLoaderActive: boolean = false;
@@ -25,7 +25,6 @@ export class ComponentBase{
 
     public getAPICallPromise<R>(url: string, hOption: HeaderOption): Promise<R>{
         const hitUrl: string = `${this.baseUrl}${url}`;
-        console.log(hitUrl);
         const getPromise = new Promise<R>((resolve, reject) =>{
             this._httpClient.get<R>(hitUrl).subscribe({
                 next: (res) =>{

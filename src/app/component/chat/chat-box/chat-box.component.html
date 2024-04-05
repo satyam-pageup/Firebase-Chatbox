@@ -20,13 +20,22 @@
 
     <div class="row mx-0 body">
         <div class="chat-container">
-            <div class="message-box my-message">
+            <!-- <div class="message-box my-message">
               <p>I've been waiting to see that show asap!<br><span>07:43</span></p>
             </div>
             <div class="message-box friend-message">
               <p>Ahh, I can't believe you do too!<br><span>07:45</span></p>
+            </div> -->
+
+            <div class="message-box" *ngFor="let chats of messageList"
+                [ngClass]="{'my-message': recevierId === chats.id, 'friend-message': recevierId !== chats.id}">
+
+                <p>{{chats.message}}<br><span>07:43</span></p>
             </div>
-            <div class="message-box friend-message">
+            <!-- <div class="message-box ">
+                <p>Ahh, I can't believe you do too!<br><span>07:45</span></p>
+            </div> -->
+            <!-- <div class="message-box friend-message">
               <p>The trailer looks good<br><span>07:45</span></p>
             </div>
             <div class="message-box friend-message">
@@ -50,15 +59,15 @@
           <div class="message-box friend-message">
               <p>Awesome! I'll start a video chat with you in a few.<br><span>07:49</span></p>
             </div>
-          </div>
-    </div>
+          </div> -->
+        </div>
 
-    <!-- footer -->
-    <div class="row mx-0 footer">
-        <div class="message-box">
-            <i class='bx bx-smile'></i>
-            <input type="text" placeholder="Type a message">
+        <!-- footer -->
+        <div class="row mx-0 footer">
+            <div class="message-box">
+                <i class='bx bx-smile'></i>
+                <input type="text" placeholder="Type a message">
 
+            </div>
         </div>
     </div>
-</div>
