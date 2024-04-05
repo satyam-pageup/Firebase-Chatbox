@@ -13,14 +13,14 @@
             <div class="col-md-10">
                 <div class="row mx-0">
                     <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
-                    <small class="text-danger" *ngIf="loginForm.controls.email.touched || loginForm.controls.email.dirty">
+                    <small class="text-danger p-0" *ngIf="loginForm.controls.email.touched || loginForm.controls.email.dirty">
                         <small *ngIf="loginForm.controls.email.errors?.['required']">Required</small>
                     </small>
                 </div>
             </div>
         </div>
 
-        <div class="row mx-0 mb-3">
+        <div class="row mx-0 mb-5">
             <div class="col-md-1">
                 <label>Password</label>
             </div>
@@ -28,7 +28,7 @@
             <div class="col-md-10">
                 <div class="row mx-0">
                     <input type="password" class="form-control" placeholder="Enter Password"  formControlName="password">
-                    <small class="text-danger" *ngIf="loginForm.controls.password.touched || loginForm.controls.password.dirty">
+                    <small class="text-danger p-0" *ngIf="loginForm.controls.password.touched || loginForm.controls.password.dirty">
                         <small *ngIf="loginForm.controls.password.errors?.['required']">Required</small>
                     </small>
                 </div>
@@ -36,7 +36,10 @@
             </div>
         </div>
 
-        <div class="row mx-0 mb-3">
+        <div class="row mx-0" style="display: flex; flex-direction: column;">
+            <div class="col mb-2">
+                <p>Don't Have account? <a [routerLink]="'/register'"> Register here</a> </p>
+            </div>
             <div class="col">
                 <button (click)="login()" class="btn btn-primary">Login</button>
             </div>

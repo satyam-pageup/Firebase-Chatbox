@@ -13,7 +13,7 @@
             <div class="col-md-10">
                 <div class="row mx-0">
                     <input type="text" class="form-control" placeholder="Enter Name" formControlName="name">
-                    <small class="text-danger"
+                    <small class="text-danger p-0"
                         *ngIf="registerForm.controls.name.touched || registerForm.controls.name.dirty">
                         <small *ngIf="registerForm.controls.name.errors?.['required']">Required</small>
                     </small>
@@ -29,7 +29,7 @@
             <div class="col-md-10">
                 <div class="row mx-0">
                     <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
-                    <small class="text-danger"
+                    <small class="text-danger p-0"
                         *ngIf="registerForm.controls.email.touched || registerForm.controls.email.dirty">
                         <small *ngIf="registerForm.controls.email.errors?.['required']">Required</small>
                     </small>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="row mx-0 mb-3">
+        <div class="row mx-0 mb-5">
             <div class="col-md-1">
                 <label>Password</label>
             </div>
@@ -45,7 +45,7 @@
             <div class="col-md-10">
                 <div class="row mx-0">
                     <input type="password" class="form-control" placeholder="Enter Password" formControlName="password">
-                    <small class="text-danger"
+                    <small class="text-danger p-0"
                         *ngIf="registerForm.controls.password.touched || registerForm.controls.password.dirty">
                         <small *ngIf="registerForm.controls.password.errors?.['required']">Required</small>
                     </small>
@@ -54,9 +54,12 @@
             </div>
         </div>
 
-        <div class="row mx-0 mb-3">
+        <div class="row mx-0" style="display: flex; flex-direction: column;">
+            <div class="col mb-2">
+                <p>Already Have account? <a [routerLink]="'/login'"> Login here</a> </p>
+            </div>
             <div class="col">
-                <button (click)="register()" class="btn btn-primary">Login</button>
+                <button (click)="register()" class="btn btn-primary">Register</button>
             </div>
         </div>
     </form>
