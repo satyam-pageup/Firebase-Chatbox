@@ -1,0 +1,45 @@
+<div class="container-fluid" style="display: flex; height: 100vh; justify-content: center; align-items: center;">
+    <form [formGroup]="loginForm" style="width: 500px; padding: 10px;" class="card">
+
+        <div class="row mx-0 mb-4" style="background-color: aliceblue;">
+            <h3>Login</h3>
+        </div>
+        
+        <div class="row mx-0 mb-3">
+            <div class="col-md-1">
+                <label>Email</label>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row mx-0">
+                    <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+                    <small class="text-danger" *ngIf="loginForm.controls.email.touched || loginForm.controls.email.dirty">
+                        <small *ngIf="loginForm.controls.email.errors?.['required']">Required</small>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mx-0 mb-3">
+            <div class="col-md-1">
+                <label>Password</label>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row mx-0">
+                    <input type="password" class="form-control" placeholder="Enter Password"  formControlName="password">
+                    <small class="text-danger" *ngIf="loginForm.controls.password.touched || loginForm.controls.password.dirty">
+                        <small *ngIf="loginForm.controls.password.errors?.['required']">Required</small>
+                    </small>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="row mx-0 mb-3">
+            <div class="col">
+                <button (click)="login()" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </form>
+</div>

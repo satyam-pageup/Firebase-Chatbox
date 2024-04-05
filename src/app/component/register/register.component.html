@@ -1,0 +1,63 @@
+<div class="container-fluid" style="display: flex; height: 100vh; justify-content: center; align-items: center;">
+    <form [formGroup]="registerForm" style="width: 500px; padding: 10px;" class="card">
+
+        <div class="row mx-0 mb-4" style="background-color: aliceblue;">
+            <h3>Register</h3>
+        </div>
+
+        <div class="row mx-0 mb-3">
+            <div class="col-md-1">
+                <label>Name</label>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row mx-0">
+                    <input type="text" class="form-control" placeholder="Enter Name" formControlName="name">
+                    <small class="text-danger"
+                        *ngIf="registerForm.controls.name.touched || registerForm.controls.name.dirty">
+                        <small *ngIf="registerForm.controls.name.errors?.['required']">Required</small>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mx-0 mb-3">
+            <div class="col-md-1">
+                <label>Email</label>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row mx-0">
+                    <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+                    <small class="text-danger"
+                        *ngIf="registerForm.controls.email.touched || registerForm.controls.email.dirty">
+                        <small *ngIf="registerForm.controls.email.errors?.['required']">Required</small>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mx-0 mb-3">
+            <div class="col-md-1">
+                <label>Password</label>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row mx-0">
+                    <input type="password" class="form-control" placeholder="Enter Password" formControlName="password">
+                    <small class="text-danger"
+                        *ngIf="registerForm.controls.password.touched || registerForm.controls.password.dirty">
+                        <small *ngIf="registerForm.controls.password.errors?.['required']">Required</small>
+                    </small>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row mx-0 mb-3">
+            <div class="col">
+                <button (click)="register()" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </form>
+</div>
