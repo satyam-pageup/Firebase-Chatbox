@@ -5,7 +5,9 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class UtilService {
 
-  public getChatByIdE: EventEmitter<number> = new EventEmitter<number>(); 
+  public getChatByIdE: EventEmitter<number> = new EventEmitter<number>();
+  
+  public loggedInUserId: number = -1;
 
   constructor() { }
 }

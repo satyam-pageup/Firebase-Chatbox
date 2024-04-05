@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginDataI, LoginModelI } from '../../model/login.model';
 import { ComponentBase } from '../../shared/class/ComponentBase.class';
-import { ResponseGI } from '../../response/responseG.response';
+import { ResponseDataI, ResponseGI } from '../../response/responseG.response';
 import { UserI } from '../../response/user.response';
 import { APIRoutes } from '../../shared/constants/apiRoutes.constant';
 import { APPRoutes } from '../../shared/constants/appRoutes.contant';
 import { MessagingService } from '../../service/messaging.service';
+import { UtilService } from '../../service/util.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import { MessagingService } from '../../service/messaging.service';
 })
 export class LoginComponent extends ComponentBase {
 
-  constructor(private _messageService: MessagingService) {
+  constructor(private _messageService: MessagingService, private _utilService: UtilService) {
     super();
   }
 
@@ -31,8 +32,9 @@ export class LoginComponent extends ComponentBase {
     if (this.loginForm.valid) {
       const loginData: LoginDataI = this.loginForm.value as LoginDataI;
 
-      this.postAPICallPromise<LoginDataI, ResponseGI<"data", UserI>>(APIRoutes.login, loginData, this.headerOption).then(
+      this.postAPICallPromise<LoginDataI, ResponseDataI<UserI>>(APIRoutes.login, loginData, this.headerOption).then(
         (res) => {
+          this._utilService.loggedInUserId = res.data.id;
           this._messageService.requestPermission();
           this._messageService.listen();
           

@@ -5,6 +5,19 @@ export interface ResponseGI<L, R>{
     L: R;
     token: string;
 }
+export interface ResponseDataI<T>{
+    status: string;
+    message: string;
+    statusCode: string;
+    data: T;
+    token: string;
+}
+export interface GetLoggedInUserDetailI<T>{
+    status: string;
+    message: string;
+    statusCode: string;
+    data: T
+}
 
 export interface ResponseIterableI<R>{
     status: string;
