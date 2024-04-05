@@ -3,23 +3,20 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { MessaageResponse } from '../response/message.response';
+import { ComponentBase } from '../shared/class/ComponentBase.class';
+import { ResponseGI } from '../response/responseG.response';
+import { APIRoutes } from '../shared/constants/apiRoutes.constant';
 
 
 @Injectable({
     providedIn: 'root'
 })
-export class MessagingService implements OnInit {
+export class MessagingService extends ComponentBase {
 
     public currentMessage = new BehaviorSubject("");
 
 
-    message!: MessaageResponse;
-    ngOnInit(): void {
-        // this.requestPermission();
-        // this.listen();
-        // const messaging = firebase.
-        // messaging.
-    }
+    private message!: MessaageResponse;
     
     public requestPermission() {
         const messaging = getMessaging();
@@ -28,7 +25,7 @@ export class MessagingService implements OnInit {
                 (currentToken) => {
                     if (currentToken) {
                         console.log("Hurraaa!!! we got the token.....");
-                        console.log(currentToken);
+                        this.saveToken(currentToken);
                     } else {
                         console.log('No registration token available. Request permission to generate one.');
                     }
@@ -43,10 +40,23 @@ export class MessagingService implements OnInit {
             console.log('Message received. ', payload);
             this.message = payload as MessaageResponse;
             this.currentMessage.next(this.message.notification.body);
-            // this.currentMessage.subscribe((res)=>{
             alert(this.message.notification.body);  
-            // })
         });
+    }
+
+    private saveToken(sysToken: string){
+        console.log(sysToken);
+
+        const data: {systemToken: string} = {
+            systemToken: sysToken
+        }
+
+        this.putAPICallPromise<{systemToken: string}, ResponseGI<null, null>>(APIRoutes.updateSystemToken, data, this.headerOption).then(
+            (res) =>{
+                console.log(res);
+            }
+        )
+
     }
 }
 
