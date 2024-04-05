@@ -8,6 +8,6 @@ export const environment = {
         storageBucket: "firebase-chat-angular.appspot.com",
         messagingSenderId: "582344153186",
         appId: "1:582344153186:web:102bd305ce63683c81593b",
-        vapidKey: "BFAw_P4WhlO_yeSdXXM8eW19SUoYMEmrLibk2ohZE9ey4HrH-Z_lkwdDzAEU3i8ni-sWi_lRG3DplYka4n20ccE"
+        vapidKey: "BA5YWtZDwjno-7TZvweYO4_M5QVnZ8t84EnVOXTFujb5dTlTxAdLFdY-qVgFkIvnKvPLhywUWiS3_mP-wWtFaXU"
     }
 }
