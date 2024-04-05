@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "firebase-chat-angular": {
+      "hosting": {
+        "firebase-chatbox": [
+          "fir-chat-angular-234df"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "firebase-chat-angular"
+  }
+}

@@ -34,7 +34,9 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest",
+              "src/firebase-messaging-sw"
             ],
             "styles": [
               "src/styles.scss"
@@ -101,8 +103,28 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "firebase-chatbox:build:production",
+              "serveTarget": "firebase-chatbox:serve:production"
+            },
+            "development": {
+              "buildTarget": "firebase-chatbox:build:development",
+              "serveTarget": "firebase-chatbox:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
