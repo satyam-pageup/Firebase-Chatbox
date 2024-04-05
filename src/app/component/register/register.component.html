@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="row mx-0 mb-3">
                 <div class="col-md-1">
                     <label>Email</label>
@@ -34,11 +34,12 @@
                         <small class="text-danger p-0"
                             *ngIf="registerForm.controls.email.touched || registerForm.controls.email.dirty">
                             <small *ngIf="registerForm.controls.email.errors?.['required']">Required</small>
+                            <small *ngIf="registerForm.controls.email.errors?.['pattern']">Enter Valid Email</small>
                         </small>
                     </div>
                 </div>
             </div>
-    
+
             <div class="row mx-0 mb-3">
                 <div class="col-md-1">
                     <label>Password</label>
@@ -46,23 +47,31 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                     <div class="row mx-0">
-                        <input type="password" class="form-control" placeholder="Enter Password" formControlName="password">
+                        <input type="password" class="form-control" placeholder="Enter Password"
+                            formControlName="password">
                         <small class="text-danger p-0"
                             *ngIf="registerForm.controls.password.touched || registerForm.controls.password.dirty">
                             <small *ngIf="registerForm.controls.password.errors?.['required']">Required</small>
                         </small>
                     </div>
-    
+
                 </div>
             </div>
-    
+
             <div class="row mx-0" style="display: flex; flex-direction: column;">
                 <div class="col mb-2">
                     <p>Already Have account? <a [routerLink]="'/login'"> Login here</a> </p>
                 </div>
                 <div class="col">
-                    <button (click)="register()" class="btn btn-primary">Register</button>
+                    <button *ngIf="!isBtnLoaderActive" (click)="register()" class="btn btn-primary">Register</button>
+
+                    <button *ngIf="isBtnLoaderActive" class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...
+                    </button>
                 </div>
+
+
             </div>
         </div>
     </form>

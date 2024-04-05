@@ -11,5 +11,5 @@ export const environment = {
         vapidKey: "BA5YWtZDwjno-7TZvweYO4_M5QVnZ8t84EnVOXTFujb5dTlTxAdLFdY-qVgFkIvnKvPLhywUWiS3_mP-wWtFaXU"
     },
 
-    baseUrl: ""
+    baseUrl: "http://192.168.29.154:2030/api"
 }
