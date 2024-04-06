@@ -14,7 +14,7 @@ export class ChatListComponent extends ComponentBase implements OnInit {
 
   public chatBoxList: ChatBoxI[] = [];
 
-  constructor(private _utilService:UtilService){
+  constructor(public _utilService:UtilService){
     super();
   }
 
@@ -24,6 +24,7 @@ export class ChatListComponent extends ComponentBase implements OnInit {
 
 
   public getChats(id: number){
+    console.log(id);
     this._utilService.getChatByIdE.emit(id);
   }
 
