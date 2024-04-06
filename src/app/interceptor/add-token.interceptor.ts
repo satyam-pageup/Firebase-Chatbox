@@ -26,11 +26,8 @@ export class addTokenInterceptor implements HttpInterceptor {
       })
       // modifiedReq.headers.set('Authorization', firebaseToken);
 
-      console.log("if");
     }
     else {
-      console.log("elsae");
-
       let jwtToken: string = '';
 
       if (localStorage.getItem("jwtToken")) {
