@@ -12,15 +12,35 @@ export class addTokenInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    let jwtToken: string = '';
+    // let modifiedReq = req.clone({
+    //   headers: req.headers.set('Authorization', `Bearer ${jwtToken}`),
+    // });
 
-    if (localStorage.getItem("jwtToken")) {
-      jwtToken = localStorage.getItem("jwtToken") as string;
+    const firebaseToken: string = "key=AAAAh5ZqmGI:APA91bFMcoceSX6HSScLVnHNQ7_SZd8J6YjuodbWHhojE-1ahiPltH_FW6osLWYWEepH_pqkyuQBQKDEEjr3VBlPxKDQkckY68BQ3JTATu_p2hmbB8GQoFhG6oCB4_6V1Cmf51Sjw0NO"
+    let modifiedReq;
+
+
+    if (req.headers.get('isSendNotification') == 'true') {
+      modifiedReq = req.clone({
+        headers: req.headers.set('Authorization', firebaseToken)
+      })
+      // modifiedReq.headers.set('Authorization', firebaseToken);
+
+      console.log("if");
     }
+    else {
+      console.log("elsae");
 
-    const modifiedReq = req.clone({
-      headers: req.headers.set('Authorization', `Bearer ${jwtToken}`),
-    });
+      let jwtToken: string = '';
+
+      if (localStorage.getItem("jwtToken")) {
+        jwtToken = localStorage.getItem("jwtToken") as string;
+      }
+      // console.log(req.headers.get('isSendNotification'));
+      modifiedReq = req.clone({
+        headers: req.headers.set('Authorization', `Bearer ${jwtToken}`),
+      });
+    }
 
     return next.handle(modifiedReq);
   }

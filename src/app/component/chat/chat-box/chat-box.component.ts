@@ -7,6 +7,7 @@ import { UtilService } from '../../../service/util.service';
 import { GetMessagePaginationI } from '../../../model/pagination.model';
 import { Notification } from '../../../model/notification.model';
 import { ReceiveNotificationI } from '../../../response/notification.response';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-chat-box',
@@ -41,6 +42,7 @@ export class ChatBoxComponent extends ComponentBase implements OnInit {
       this.postAPICallPromise<{ message: string }, GetLoggedInUserDetailI<null>>(APIRoutes.sendMessage(this.recevierId), data, this.headerOption).then(
         (res) => {
           this.getChatById(this.recevierId);
+          this.sendNotification();
         }
       )
       this.message = '';
@@ -48,7 +50,10 @@ export class ChatBoxComponent extends ComponentBase implements OnInit {
 
   }
 
+
   private sendNotification(){
+    this.headerOption.isSendNotification = true;
+
     const notification: Notification = {
       notification: {
         title: 'whatsaap',
@@ -59,7 +64,6 @@ export class ChatBoxComponent extends ComponentBase implements OnInit {
     this.postAPICallPromise<Notification,ReceiveNotificationI>(APIRoutes.sendNotification,notification,this.headerOption).then(
       (res)=>{
         console.log(res);
-        
       }
     )
   }
