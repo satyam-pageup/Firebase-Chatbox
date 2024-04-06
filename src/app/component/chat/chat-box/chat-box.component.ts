@@ -6,6 +6,7 @@ import { APIRoutes } from '../../../shared/constants/apiRoutes.constant';
 import { UtilService } from '../../../service/util.service';
 import { GetMessagePaginationI } from '../../../model/pagination.model';
 import { Notification } from '../../../model/notification.model';
+import { ReceiveNotificationI } from '../../../response/notification.response';
 
 @Component({
   selector: 'app-chat-box',
@@ -17,6 +18,7 @@ export class ChatBoxComponent extends ComponentBase implements OnInit {
   public messageList: MessageI[] = [];
   public recevierId: number = -1;
   public message: string = '';
+  private receiverStystemToken:string='';
 
   constructor(private _utilService: UtilService) {
     super();
@@ -39,18 +41,27 @@ export class ChatBoxComponent extends ComponentBase implements OnInit {
       this.postAPICallPromise<{ message: string }, GetLoggedInUserDetailI<null>>(APIRoutes.sendMessage(this.recevierId), data, this.headerOption).then(
         (res) => {
           this.getChatById(this.recevierId);
-          const notification: Notification = {
-            notification: {
-              title: '',
-              body: ''
-            },
-            to:''
-          }
         }
       )
       this.message = '';
     }
 
+  }
+
+  private sendNotification(){
+    const notification: Notification = {
+      notification: {
+        title: 'whatsaap',
+        body: "new message"
+      },
+      to:this.receiverStystemToken
+    }
+    this.postAPICallPromise<Notification,ReceiveNotificationI>(APIRoutes.sendNotification,notification,this.headerOption).then(
+      (res)=>{
+        console.log(res);
+        
+      }
+    )
   }
 
 
@@ -64,8 +75,7 @@ export class ChatBoxComponent extends ComponentBase implements OnInit {
     this.postAPICallPromise<GetMessagePaginationI, GetMessageI<MessageI[]>>(APIRoutes.getMessageById(id), options, this.headerOption).then(
       (res) => {
         this.messageList = res.data.data;
-        console.log(this.messageList);
-
+        this.receiverStystemToken=res.data.systemToken;
       }
     )
   }
