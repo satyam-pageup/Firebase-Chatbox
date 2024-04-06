@@ -18,7 +18,7 @@ export class ChatBoxComponent extends ComponentBase implements OnInit {
   public recevierId: number = -1;
   public message: string = '';
 
-  constructor(private _utilService: UtilService) {
+  constructor(public _utilService: UtilService) {
     super();
   }
   ngOnInit(): void {
